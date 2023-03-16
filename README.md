@@ -1,8 +1,8 @@
 # Practical Exam 1 - Web Programming
 
-**Name:** Juan Sebastián Alegría Zúñiga
-**Student code:** 202011282
-**Course section:** 1
+- **Name:** Juan Sebastián Alegría Zúñiga
+- **Student code:** 202011282
+- **Course section:** 1
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
