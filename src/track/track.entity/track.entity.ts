@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { AlbumEntity } from 'src/album/album.entity/album.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class TrackEntity {
@@ -11,4 +12,7 @@ export class TrackEntity {
 
     @Column()
     duration: number;
+
+    @ManyToOne(() => AlbumEntity, album => album.tracks)
+    album: AlbumEntity;
 }

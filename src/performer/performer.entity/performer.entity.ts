@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { AlbumEntity } from 'src/album/album.entity/album.entity';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
-export class AlbumEntity {
+export class PerformerEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -14,4 +15,7 @@ export class AlbumEntity {
 
     @Column()
     description: string;
+
+    @ManyToMany(() => AlbumEntity, album => album.performers)
+    albums: AlbumEntity[];
 }
