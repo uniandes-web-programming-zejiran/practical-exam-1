@@ -4,18 +4,18 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
 export class PerformerEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    image: string;
+  @Column()
+  image: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @ManyToMany(() => AlbumEntity, album => album.performers)
-    albums: AlbumEntity[];
+  @ManyToMany(() => AlbumEntity, (album) => album.performers)
+  albums: AlbumEntity[];
 }
