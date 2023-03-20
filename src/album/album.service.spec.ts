@@ -47,7 +47,30 @@ describe('AlbumService', () => {
     expect(service).toBeDefined();
   });
 
-  it('create should return an album successfully', async () => {
+  it('findAll should return all albums', async () => {
+    const albums: AlbumEntity[] = await service.findAll();
+    expect(albums).not.toBeNull();
+    expect(albums).toHaveLength(albumsList.length);
+  });
+
+  it('findOne should return album by ID', async () => {
+    const storedAlbum: AlbumEntity = albumsList[0];
+    const album: AlbumEntity = await service.findOne(storedAlbum.id);
+    expect(album).not.toBeNull();
+    expect(storedAlbum.name).toEqual(album.name);
+    expect(storedAlbum.cover).toEqual(album.cover);
+    expect(storedAlbum.releaseDate).toEqual(album.releaseDate);
+    expect(storedAlbum.description).toEqual(album.description);
+  });
+
+  it('findOne should throw exception for an invalid album', async () => {
+    await expect(() => service.findOne('0')).rejects.toHaveProperty(
+      'message',
+      'The album with the given id was not found',
+    );
+  });
+
+  it('create should return an album', async () => {
     const album: AlbumEntity = {
       id: '',
       name: faker.lorem.sentence(),
@@ -91,6 +114,51 @@ describe('AlbumService', () => {
     await expect(() => service.create(album)).rejects.toHaveProperty(
       'message',
       'The album name and description cannot be empty',
+    );
+  });
+
+  it('update should modify a album', async () => {
+    const album: AlbumEntity = albumsList[0];
+    album.name = 'New name';
+
+    const updatedAlbum: AlbumEntity = await service.update(album.id, album);
+    expect(updatedAlbum).not.toBeNull();
+
+    const storedAlbum: AlbumEntity = await repository.findOne({
+      where: { id: album.id },
+    });
+    expect(storedAlbum).not.toBeNull();
+    expect(storedAlbum.name).toEqual(album.name);
+  });
+
+  it('update should throw exception for an invalid album', async () => {
+    let album: AlbumEntity = albumsList[0];
+    album = {
+      ...album,
+      name: 'New name',
+    };
+    await expect(() => service.update('0', album)).rejects.toHaveProperty(
+      'message',
+      'The album with the given id was not found',
+    );
+  });
+
+  it('delete deberia remover un album', async () => {
+    const album: AlbumEntity = albumsList[0];
+    await service.delete(album.id);
+
+    const deletedAlbum: AlbumEntity = await repository.findOne({
+      where: { id: album.id },
+    });
+    expect(deletedAlbum).toBeNull();
+  });
+
+  it('delete should throw exception for an invalid album', async () => {
+    const album: AlbumEntity = albumsList[0];
+    await service.delete(album.id);
+    await expect(() => service.delete('0')).rejects.toHaveProperty(
+      'message',
+      'The album with the given id was not found',
     );
   });
 });
