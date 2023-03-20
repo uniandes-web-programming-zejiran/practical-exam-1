@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { PerformerEntity } from 'src/performer/performer.entity';
-import { TrackEntity } from 'src/track/track.entity';
+import { PerformerEntity } from '../performer/performer.entity';
+import { TrackEntity } from '../track/track.entity';
 import {
   Column,
   Entity,

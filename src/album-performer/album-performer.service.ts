@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AlbumEntity } from 'src/album/album.entity';
-import { PerformerEntity } from 'src/performer/performer.entity';
+import { AlbumEntity } from '../album/album.entity';
+import { PerformerEntity } from '../performer/performer.entity';
 import { Repository } from 'typeorm';
 import {
   BusinessError,
