@@ -6,9 +6,6 @@ import { TrackService } from './track.service';
 
 @Module({
   providers: [TrackService],
-  imports: [
-    TypeOrmModule.forFeature([TrackEntity]),
-    TypeOrmModule.forFeature([AlbumEntity]),
-  ],
+  imports: [TypeOrmModule.forFeature([TrackEntity, AlbumEntity])],
 })
 export class TrackModule {}
