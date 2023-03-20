@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsDate, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 export class AlbumDto {
   @IsString()
   @IsNotEmpty()
@@ -13,7 +13,6 @@ export class AlbumDto {
   @IsNotEmpty()
   readonly description: string;
 
-  @IsDate()
   @IsNotEmpty()
   readonly releaseDate: Date;
 }
