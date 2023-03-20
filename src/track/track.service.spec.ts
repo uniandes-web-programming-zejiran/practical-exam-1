@@ -94,7 +94,7 @@ describe('TrackService', () => {
 
     const storedTrack: TrackEntity = await repository.findOne({
       where: { id: newTrack.id },
-      relations: ['album']
+      relations: ['album'],
     });
     expect(storedTrack).not.toBeNull();
     expect(storedTrack.name).toEqual(newTrack.name);
